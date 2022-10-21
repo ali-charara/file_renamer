@@ -12,4 +12,4 @@ WHITELIST_EXTENSIONS: list[str] = [
 PRIVATE_HEADERS: list[str] = [".", "_"]
 
 FORMATTER: Callable = format_to_snake_case
-LOGGER_VERBOSE: LoggingLevel = LoggingLevel.CRITICAL
+LOGGER_VERBOSE: LoggingLevel = LoggingLevel.INFO
