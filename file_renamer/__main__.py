@@ -2,8 +2,6 @@ from argparse import ArgumentParser, Namespace
 import os
 import logging
 
-from tqdm import tqdm
-
 from .constants import WHITELIST_EXTENSIONS, FORMATTER, LOGGER_VERBOSE
 from .path_processing import search_files_and_directories, rename_file
 from .utils import input_yes_no_answer
@@ -19,7 +17,7 @@ def parse_arguments() -> Namespace:
     parser.add_argument(
         "--deep",
         "-d",
-        type=bool,
+        action="store_true",
         default=False,
         help="whether to look for nested children of the root folder (default: False)",
     )
@@ -35,16 +33,15 @@ if __name__ == "__main__":
     ):
         logger.info("Processing files...")
         candidates = search_files_and_directories(arguments.folder_path, arguments.deep)
-        for file_path, is_directory in tqdm(reversed(candidates)):
+        for file_path, is_directory in reversed(candidates):
             if is_directory or (
                 not is_directory
                 and os.path.splitext(file_path)[1][1:] in WHITELIST_EXTENSIONS
             ):
-                file_name = os.path.basename(file_path)
-                if file_name != (
-                    formatted_name := FORMATTER(os.path.basename(file_path))
-                ):
-                    rename_file(file_path, formatted_name)
+                full_path, dot_extension = os.path.splitext(file_path)
+                file_name = full_path.split(os.sep)[-1]
+                if file_name != (formatted_name := FORMATTER(file_name)):
+                    rename_file(file_path, f"{formatted_name}{dot_extension}")
                     logger.info((f"{file_name} → {formatted_name}"))
                     number_formatted_files += 1
 
