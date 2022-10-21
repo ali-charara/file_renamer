@@ -8,6 +8,6 @@ def format_to_snake_case(string: str) -> str:
         re.sub(
             "(?<=[a-z0-9])([A-Z]+)",
             r" \1",
-            re.sub("(?<=[A-Z]{2})([a-z0-9]+)", r" \1", string.strip()),
+            re.sub("(?<=[A-Z]{2})([a-z]+)", r" \1", string.strip()),
         ),
     ).lower()
