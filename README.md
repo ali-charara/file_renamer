@@ -5,11 +5,11 @@ This project allows you to rename the files in the given directory in a sophisti
 To execute the cli, you need to open a terminal command with python and run:
 
 ```
-python -m file_renamer --deep true [folder_path]
+python -m file_renamer --deep [folder_path]
 ```
 
 - `folder_path` is the root path of the directory to process.
-- `deep` is true if you want to rename all the nested files in the given directory. Default is false.
+- `--deep` if you want to rename all the nested files in the given directory.
 
 You can update the `WHITELIST_EXTENSIONS` to tell the cli which extensions to handle. You can also update the headers of the files to avoid in `PRIVATE_HEADERS`. By default, folder's names are always formatted if not tagged as private folders.
 
