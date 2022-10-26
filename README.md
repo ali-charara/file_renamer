@@ -25,3 +25,7 @@ You can update the `WHITELIST_EXTENSIONS` to tell the cli which extensions to ha
 - handle easy execution from any workspace
 - change bool cli's arguments as true when flag specified and false otherwise
 - prevent from renaming os/program files
+- remove unwanted patterns if possible:
+  - `_\[\d{5}\]` for some downloaded files from mails
+  - `_(\d)` for copies
+- add NLP formatting feature
