@@ -4,7 +4,7 @@ This project allows you to rename the files in the given directory in a sophisti
 
 To execute the cli, you need to open a terminal command with python and run:
 
-```
+```bash
 python -m file_renamer --deep [folder_path]
 ```
 
@@ -12,7 +12,9 @@ python -m file_renamer --deep [folder_path]
 - `--deep` if you want to rename all the nested files in the given directory.
 - `--keep` if you want to keep the inconsistencies in the file_names (e.g. keep "é" instead of casting it to "e")
 
-You can update the `WHITELIST_EXTENSIONS` to tell the cli which extensions to handle. You can also update the headers of the files to avoid in `PRIVATE_HEADERS`. By default, folder's names are always formatted if not tagged as private folders. Finally, you can also modify `DEV_PROJECT_INDICATORS` which contains the indicators of project folders it must not touch. As long as your projects contains one of the specified indicator, it won't be processed by the renamer.
+You may add `.renamer_ignore` in the subfolders you would like to avoid processing.
+
+You can update the `WHITELIST_EXTENSIONS` to tell the cli which extensions to handle. You can also update the headers of the files to avoid in `PRIVATE_HEADERS`. By default, folder's names are always formatted if not tagged as private folders. Finally, you can also modify `PROJECT_INDICATORS` which contains the indicators of project folders it must not touch. As long as your projects contains one of the specified indicator, it won't be processed by the renamer.
 
 ## TO DO
 
