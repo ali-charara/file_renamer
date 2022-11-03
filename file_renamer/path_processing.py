@@ -12,8 +12,7 @@ def search_files_and_directories(
     for file_name in os.listdir(root_folder_path):
         file_path = os.path.join(root_folder_path, file_name)
         if file_name in DEV_PROJECT_INDICATORS:
-            paths = []
-            break
+            return []
         elif file_name[0] not in PRIVATE_HEADERS:
             paths.append((file_path, os.path.isdir(file_path)))
             if deep and os.path.isdir(file_path):
