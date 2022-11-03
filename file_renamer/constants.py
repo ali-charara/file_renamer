@@ -9,8 +9,8 @@ WHITELIST_EXTENSIONS: list[str] = [
     "tif", "docx", "doc",
 ]
 
-DEV_PROJECT_INDICATORS: list[str] = [
-    ".git", "README.md", "LICENSE", ".gitignore", ".obsidian"
+PROJECT_INDICATORS: list[str] = [
+    ".renamer_ignore", ".git", ".obsidian"
     ]
 # fmt: on
 PRIVATE_HEADERS: list[str] = [".", "_"]

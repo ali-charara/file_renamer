@@ -1,6 +1,6 @@
 import os
 
-from .constants import DEV_PROJECT_INDICATORS, PRIVATE_HEADERS
+from .constants import PROJECT_INDICATORS, PRIVATE_HEADERS
 
 
 def search_files_and_directories(
@@ -11,7 +11,7 @@ def search_files_and_directories(
     paths = [(root_folder_path, True)]
     for file_name in os.listdir(root_folder_path):
         file_path = os.path.join(root_folder_path, file_name)
-        if file_name in DEV_PROJECT_INDICATORS:
+        if file_name in PROJECT_INDICATORS:
             return []
         elif file_name[0] not in PRIVATE_HEADERS:
             paths.append((file_path, os.path.isdir(file_path)))
