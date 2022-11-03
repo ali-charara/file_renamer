@@ -6,7 +6,7 @@ from .models import LoggingLevel
 # fmt: off
 WHITELIST_EXTENSIONS: list[str] = [
     "pdf", "xlsx", "jpg", "csv", "txt", "zip",
-    "tif", "docx",
+    "tif", "docx", "doc",
 ]
 
 DEV_PROJECT_INDICATORS: list[str] = [
