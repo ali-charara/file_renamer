@@ -5,12 +5,12 @@ This project allows you to rename the files in the given directory in a sophisti
 To execute the cli, you need to open a terminal command with python and run:
 
 ```bash
-python -m file_renamer --deep [folder_path]
+python -m file_renamer --deep --ascii [folder_path]
 ```
 
 - `folder_path` is the root path of the directory to process.
 - `--deep` if you want to rename all the nested files in the given directory.
-- `--keep` if you want to keep the inconsistencies in the file_names (e.g. keep "é" instead of casting it to "e")
+- `--ascii` if you want to cast the file_names to ascii format.
 
 You may add `.renamer_ignore` in the subfolders you would like to avoid processing.
 
@@ -21,10 +21,13 @@ You can update the `WHITELIST_EXTENSIONS` to tell the cli which extensions to ha
 - improve formatting to `snake_case`:
   - handle dates and special sequences of characters formatting
 - add other formatters
+- add arguments folder_paths_to_ignore for the execution
 - add tests to ensure that the formatting and renaming is done properly
 - give possibility to restrict renaming to either folders or files or both.
 - handle easy execution from any workspace
 - remove unwanted patterns if possible:
   - `_\[\d{5}\]` for some downloaded files from mails
   - `_(\d)` for copies
-- add NLP formatting feature
+- explore NLP formatting feature
+- expections formats:
+  - `LYONStage IAEthiqueMMM01012022`
