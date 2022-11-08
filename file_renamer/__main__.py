@@ -24,11 +24,11 @@ def parse_arguments() -> Namespace:
         help="whether to look for nested children of the root folder (default: False)",
     )
     parser.add_argument(
-        "--keep",
-        "-k",
+        "--ascii",
+        "-a",
         action="store_true",
         default=False,
-        help="whether to keep inconsistency in file_names (e.g. keep 'é' instead of 'e') (default: False)",
+        help="whether to cast file_names to ascii format (default: False)",
     )
 
     return parser.parse_args()
@@ -38,22 +38,19 @@ if __name__ == "__main__":
     arguments = parse_arguments()
     number_formatted_files = 0
     if input_yes_no_answer(
-        f"do you want to process {(absolute_folder_path := os.path.abspath(arguments.folder_path))}?"
+        f"Do you want to process {(absolute_folder_path := os.path.abspath(arguments.folder_path))}?"
     ):
         logger.info("Processing files...")
         # ? relative paths may raise errors due to MAX_PATH limitations on windows for instance
         candidates = search_files_and_directories(absolute_folder_path, arguments.deep)
-        preprocessing = (lambda x: x) if arguments.keep else unidecode
+        pre_processer = unidecode if arguments.ascii else lambda x: x
         for file_path, is_directory in reversed(candidates):
-            if is_directory or (
-                not is_directory
-                and os.path.splitext(file_path)[1][1:] in WHITELIST_EXTENSIONS
-            ):
-                full_path, dot_extension = os.path.splitext(file_path)
-                file_name = full_path.split(os.sep)[-1]
-                if file_name != (formatted_name := FORMATTER(preprocessing(file_name))):
+            full_path, dot_extension = os.path.splitext(file_path)
+            file_name = full_path.split(os.sep)[-1]
+            if is_directory or dot_extension[1:] in WHITELIST_EXTENSIONS:
+                if file_name != (formatted_name := FORMATTER(pre_processer(file_name))):
                     rename_file(file_path, f"{formatted_name}{dot_extension}")
-                    logger.info((f"{file_name} → {formatted_name}"))
+                    logger.info(f"{file_name} → {formatted_name}")
                     number_formatted_files += 1
 
         print(f"Number of files formatted: {number_formatted_files}")
