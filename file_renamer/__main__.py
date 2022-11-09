@@ -23,13 +23,6 @@ def parse_arguments() -> Namespace:
     parser = ArgumentParser()
     parser.add_argument("folder_path", help="the root path of the considered folder")
     parser.add_argument(
-        "--deep",
-        "-d",
-        action="store_true",
-        default=False,
-        help="whether to look for nested children of the root folder (default: False)",
-    )
-    parser.add_argument(
         "--ascii",
         "-a",
         action="store_true",
@@ -42,6 +35,13 @@ def parse_arguments() -> Namespace:
         action="store_true",
         default=False,
         help="whether to remove unwanted patterns if possible (e.g. '- copy') (default: False)",
+    )
+    parser.add_argument(
+        "--deep",
+        "-d",
+        action="store_true",
+        default=False,
+        help="whether to look for nested children of the root folder (default: False)",
     )
 
     return parser.parse_args()
