@@ -1,17 +1,17 @@
-from argparse import ArgumentParser, Namespace
-import os
 import logging
+import os
+from argparse import ArgumentParser, Namespace
 from functools import partial
 
 from unidecode import unidecode
 
 from .constants import (
-    WHITELIST_EXTENSIONS,
     FORMATTER,
     LOGGER_VERBOSE,
     REGEX_UNWANTED_PATTERNS,
+    WHITELIST_EXTENSIONS,
 )
-from .path_processing import search_files_and_directories, rename_file
+from .path_processing import rename_file, search_files_and_directories
 from .utils import input_yes_no_answer, remove_unwanted_patterns
 
 logging.basicConfig()

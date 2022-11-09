@@ -1,6 +1,6 @@
 import os
 
-from .constants import PROJECT_INDICATORS, PRIVATE_HEADERS
+from .constants import PRIVATE_HEADERS, PROJECT_INDICATORS
 
 
 def search_files_and_directories(
