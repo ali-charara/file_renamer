@@ -1,8 +1,13 @@
 # development
 __pycache__/
+.ipynb_checkpoints/
 
 # IDE
 .vscode/
 
+# data
+data/
+
 # sandbox
 **/sandbox/
+**/*.ipynb
