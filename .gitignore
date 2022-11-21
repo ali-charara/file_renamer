@@ -5,6 +5,9 @@ __pycache__/
 # IDE
 .vscode/
 
+# data
+data/
+
 # sandbox
 **/sandbox/
 **/*.ipynb
