@@ -85,7 +85,7 @@ if __name__ == "__main__":
                     unprocessed_paths.append(file_path)
 
         if unprocessed_paths:
-            logger.info("Unprocessed files...")
+            logger.info("Displaying unprocessed files...")
             for unprocessed_path in reversed(unprocessed_paths):
                 logger.info(
                     f"✖ {os.path.relpath(unprocessed_path, absolute_folder_path)}"
