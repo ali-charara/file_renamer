@@ -13,14 +13,14 @@ PROJECT_INDICATORS: list[str] = [
     ".renamer_ignore", ".git", ".obsidian"
     ]
 
-UNWANTED_PATTERNS: list[str] = [
-    r"[\s_]\(\d\)$",  r"\[\d{4,}\]$", r"\- Copy$",
-    r"[\s_]?copy$",
-]
-# fmt: on
 PRIVATE_HEADERS: list[str] = [".", "_"]
 
-
+UNWANTED_PATTERNS: list[str] = [
+    r"\s\(\d\)$",  r"\[\d{4,}\]$", r"\- Copy$",
+    r"\s?copy$",
+]
+# fmt: on
 REGEX_UNWANTED_PATTERNS = r"|".join(UNWANTED_PATTERNS)
+
 FORMATTER: Callable = format_to_snake_case
 LOGGER_VERBOSE: LoggingLevel = LoggingLevel.INFO

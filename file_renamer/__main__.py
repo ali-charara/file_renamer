@@ -53,7 +53,7 @@ if __name__ == "__main__":
     if input_yes_no_answer(
         f"Do you want to process {(absolute_folder_path := os.path.abspath(arguments.folder_path))}?"
     ):
-        preprocesser = unidecode if arguments.ascii else lambda x: x
+        pre_processer = unidecode if arguments.ascii else lambda x: x
         cleaner = (
             partial(
                 remove_unwanted_patterns,
@@ -66,26 +66,29 @@ if __name__ == "__main__":
         logger.info("Processing files...")
         # ? relative paths may raise errors due to MAX_PATH limitations on windows for instance
         candidates = search_files_and_directories(absolute_folder_path, arguments.deep)
+        unprocessed_paths = []
         for file_path, is_directory in reversed(candidates):
-            full_path, dot_extension = os.path.splitext(file_path)
-            file_name = full_path.split(os.sep)[-1]
+            file_name, dot_extension = os.path.splitext(os.path.basename(file_path))
             if (
                 is_directory or dot_extension[1:] in WHITELIST_EXTENSIONS
             ) and file_name != (
-                formatted_name := FORMATTER(cleaner(preprocesser(file_name)))
+                formatted_name := FORMATTER(cleaner(pre_processer(file_name)))
             ):
                 try:
                     rename_file(
                         file_path,
                         f"{(formatted_name)}{dot_extension}",
                     )
+                    logger.info(f"{file_name} → {formatted_name}")
+                    number_formatted_files += 1
                 except FileExistsError:
-                    rename_file(
-                        file_path,
-                        f"{(formatted_name := FORMATTER(preprocesser(file_name)))}{dot_extension}",
-                    )
+                    unprocessed_paths.append(file_path)
 
-                logger.info(f"{file_name} → {formatted_name}")
-                number_formatted_files += 1
+        if unprocessed_paths:
+            logger.info("Unprocessed files...")
+            for unprocessed_path in reversed(unprocessed_paths):
+                logger.info(
+                    f"✖ {os.path.relpath(unprocessed_path, absolute_folder_path)}"
+                )
 
         print(f"Number of files formatted: {number_formatted_files}")
