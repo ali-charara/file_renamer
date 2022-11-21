@@ -13,7 +13,7 @@ python -m file_renamer --deep [folder_path]
 - `--ascii` if you want to cast the file_names to ascii format.
 - `--clean` if you want to remove identified noisy patterns such as " copy", " (1)", etc.
 
-You may add `.renamer_ignore` in the subfolders you would like to avoid processing.
+You may add `.renamer_ignore` in the subfolders you would like to avoid processing. If the formatting attempt matches an existing file, the file won't be processed.
 
 You can update the `WHITELIST_EXTENSIONS` to tell the cli which extensions to handle. You can also update the headers of the files to avoid in `PRIVATE_HEADERS`. By default, folder's names are always formatted if not tagged as private folders. You can also modify `PROJECT_INDICATORS` which contains the indicators of project folders it must not touch. As long as your projects contains one of the specified indicator, it won't be processed by the renamer. Finally, to specify new unwanted patterns to be processed automatically by the cleaner, you may modify `UNWANTED_PATTERNS`.
 
@@ -29,3 +29,6 @@ You can update the `WHITELIST_EXTENSIONS` to tell the cli which extensions to ha
 - explore NLP formatting feature
 - expections formats:
   - `LYONStage IAEthiqueMMM01012022`
+  - `Cours (livre + notes de cours)`
+  - `MVA-VCdimNeuralNetworks → mva_vc_neural_networks`
+  
