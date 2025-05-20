@@ -26,9 +26,22 @@ You can update the `WHITELIST_EXTENSIONS` to tell the cli which extensions to ha
 - add tests to ensure that the formatting and renaming is done properly
 - give possibility to restrict renaming to either folders or files or both.
 - handle easy execution from any workspace
+- add log saving feature
 - explore NLP formatting feature
 - expections formats:
   - `LYONStage IAEthiqueMMM01012022`
   - `Cours (livre + notes de cours)`
   - `MVA-VCdimNeuralNetworks → mva_vc_neural_networks`
+  - `proofs_copy → proofs_`
+  - `TPs → tp_`
+- cast to utf-8 in some case (teams download encoding)
+- Devops
+  - project builder
+  - venv monitoring
+  - dev dependencies setup
+  - git repo rights
+  - dependabots
+  - test
+  - CI
+  - logging configuration
   

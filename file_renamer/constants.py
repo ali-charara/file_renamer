@@ -5,12 +5,14 @@ from .models import LoggingLevel
 
 # fmt: off
 WHITELIST_EXTENSIONS: list[str] = [
-    "pdf", "xlsx", "jpg", "csv", "txt", "zip",
-    "tif", "docx", "doc",
+    "pdf", "xlsx", "jpg", "txt", "zip",
+    "tif", "docx", "doc", "pptx", "png",
+    "jpeg"
 ]
 
 PROJECT_INDICATORS: list[str] = [
-    ".renamer_ignore", ".git", ".obsidian"
+    ".renamer_ignore", ".git", ".obsidian", "data",
+    "train", "test"
     ]
 
 PRIVATE_HEADERS: list[str] = [".", "_"]
